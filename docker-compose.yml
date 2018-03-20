@@ -1,0 +1,80 @@
+version: '2'
+
+services:
+
+  elasticsearch:
+    build: elasticsearch/
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ../volumes/elasticsearch/data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx2048m -Xms2048m"
+    networks:
+      - elk
+    restart: always
+
+  logstash:
+    build: logstash/
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logstash/patterns:/usr/share/logstash/patterns
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
+    ports:
+      - "5000:5000"
+      - "5044:5044"
+      - "5560:5560"
+      - "5044:5044/udp"
+      - "5140:5140/udp"
+      - "5142:5142/udp"
+      - "514:5141/udp"
+    environment:
+      LS_JAVA_OPTS: "-Xmx512m -Xms512m"
+    networks:
+      - elk
+    restart: always
+    depends_on:
+      - elasticsearch
+
+
+  kibana:
+    build: kibana/
+    environment:
+      TZ: "Europe/Berlin"
+    volumes:
+      - ./kibana/config/:/usr/share/kibana/config
+    ports:
+      - "5601:5601"
+    networks:
+      - elk
+    restart: always
+    depends_on:
+      - elasticsearch
+
+  elastichq:
+    build: elasticsearch-HQ/
+    restart: always
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+    ports:
+     - "32000:5000"
+
+  curator:
+    build: curator/
+    restart: always
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+    volumes:
+      - ./curator/curator.yml:/etc/curator/curator.yml
+      - ./curator/actions.yml:/etc/curator/actions.yml
+
+networks:
+
+  elk:
+    driver: bridge

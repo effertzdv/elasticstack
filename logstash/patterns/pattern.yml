@@ -1,0 +1,9 @@
+MAC (?:%{CISCOMAC}|%{WINDOWSMAC}|%{COMMONMAC})
+CISCOMAC (?:(?:[A-Fa-f0-9]{4}\.){2}[A-Fa-f0-9]{4})
+WINDOWSMAC (?:(?:[A-Fa-f0-9]{2}-){5}[A-Fa-f0-9]{2})
+COMMONMAC (?:(?:[A-Fa-f0-9]{2}:){5}[A-Fa-f0-9]{2})
+UNIFI_FW [0-9]+\.[0-9]+\.[0-9]+\.[0-9]+
+UNIFI_DEV_TYPE \s?(\("%{WORD:unifi_type},%{WORD:unifi_ap_mac},v%{UNIFI_FW:unifi_firmware}"\))?
+UNIFI_EVENT_TYPE (IEEE 802\.11|WPA|WEP)
+UNIFI_CUSTOM_EVENT (wevent.ubnt_custom_event\(\): %{WORD:CUSTOM_UNFI_EVENT} %{WORD:unifi_interface}: %{MAC:unifi_sta_mac} \/ %{GREEDYDATA:CUSTOM_UNIFI_EVENT_DATA})
+

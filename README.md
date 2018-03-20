@@ -1,4 +1,4 @@
-# my elasticstack #
+# My Docker ELK Stack
 
 This a docker-compose collection to run an ELK stack with
  
@@ -12,8 +12,11 @@ Logstash, ES and kibana are the default components. But while running some tests
 
 Addtionally I added ElasticHQ - a great tool to manage your ElasticSearch installation.
 
+Most of this repository is based on the excellent work of Anthony Lapenna: [https://github.com/deviantony/docker-elk](https://github.com/deviantony/docker-elk). He made a very installation and configuration tutorial. Please visit his repo
 
-## installation if you are behind a proxx ##
+I did only some tweaks here and there for my personal needs.
+
+## installation if you are behind a proxy ##
 
 build the docker images if you have no direct connection to the internet will fail if you do not define the http_prpxy / https_proxy in your Dockerfile:
 
@@ -31,17 +34,3 @@ The logstash pipeline has some preconfiured inputs und filters:
 - syslog from vmware vsphere hosts (udp/514)
  
 The portnumbers refer to to public ports via the docker-compose file. The ports inside the logstash docker image might be different.
-
-## first run ##
-
-Install docker & docker-compose
-clone the git repositoy
-create the docker images with docker-compose up
-wait for the initalization of the stack to complete
-
-Then open kibana at http://my.host:5601 and create the indices. Before each index can be created make sure
-you have pushed content from logstash to your indices ( simple let you log source push data to logstash - if the data arrive elasticsearch creates to indices for you). If the indices exist you can add them to kibana.
-
-## Visualisations ##
-
-... tbd
