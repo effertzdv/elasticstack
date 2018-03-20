@@ -28,7 +28,7 @@ build the docker images if you have no direct connection to the internet will fa
 The logstash pipeline has some preconfiured inputs und filters:
 
 - syslog from unifi UAP accesspoints (udp/5142)
-- filebeat from unifi controller log (tcp/5045)
+- filebeat from unifi controller log (tcp/5560)
 - syslog from sonicwall TZ und NSA firewalls (udp 5140)
 - filebeat from squid proxy access.log (tcp/5044)
 - syslog from vmware vsphere hosts (udp/514)
