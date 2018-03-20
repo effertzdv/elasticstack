@@ -6,7 +6,7 @@ This a docker-compose collection to run an ELK stack with
 - Elasticsearch
 - Kibana
 - curator 
-- ElasticHQ
+- ElasticHQ (not yet)
 
 Logstash, ES and kibana are the default components. But while running some tests with fast growing syslog files I added curator to keep the number of indices limited and preserve diskspace.
 
