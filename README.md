@@ -6,7 +6,7 @@ This a docker-compose collection to run an ELK stack with
 - Elasticsearch
 - Kibana
 - curator 
-- ElasticHQ (not yet)
+- ElasticHQ (see installation instruction)
 
 Logstash, ES and kibana are the default components. But while running some tests with fast growing syslog files I added curator to keep the number of indices limited and preserve diskspace.
 
@@ -16,12 +16,21 @@ Most of this repository is based on the excellent work of Anthony Lapenna: [http
 
 I did only some tweaks here and there for my personal needs.
 
+## Install Elasticsearch-HQ ##
+
+clone the repository
+
+    git clone https://github.com/ElasticHQ/elasticsearch-HQ.git
+
+to the folder elasticsearch-HQ.
+
 ## installation if you are behind a proxy ##
 
 build the docker images if you have no direct connection to the internet will fail if you do not define the http_prpxy / https_proxy in your Dockerfile:
 
     ENV http_proxy=http://proxyuser:proxypass@proxy.ip:port
     ENV https_proxy=http://proxyuser:proxypass@proxy.ip:port
+
      
 ## Logstash configuration ##
 
