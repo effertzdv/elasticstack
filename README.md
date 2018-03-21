@@ -43,3 +43,16 @@ The logstash pipeline has some preconfiured inputs und filters:
 - syslog from vmware vsphere hosts (udp/514)
  
 The portnumbers refer to to public ports via the docker-compose file. The ports inside the logstash docker image might be different.
+
+## curator setup ##
+
+see actions.yml for details:
+
+Five jobs to keep indices for 14 days
+- unifi-*
+- unifiserver-*
+- vmware-*
+- squid-*
+- sonicwall-*
+
+Add more jobs for new indices. Of course curator can do more then delete the indices.
