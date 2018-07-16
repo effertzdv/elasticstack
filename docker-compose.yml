@@ -53,8 +53,8 @@ services:
     depends_on:
       - elasticsearch
 
-  elastichq:
-    build: elasticsearch-HQ/
+   elastichq:
+    image: elastichq/elasticsearch-hq
     restart: always
     networks:
       - elk
