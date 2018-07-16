@@ -16,9 +16,13 @@ Most of this repository is based on the excellent work of Anthony Lapenna: [http
 
 I did only some tweaks here and there for my personal needs.
 
+## Folder for persistent data ##
+
+Create a volume folder beside(!) the folder containing the docker-compose.yml or change the path in the docker-compose.yml.
+
 ## installation if you are behind a proxy ##
 
-build the docker images if you have no direct connection to the internet will fail if you do not define the http_prpxy / https_proxy in your Dockerfile:
+build the docker images if you have no direct connection to the internet will fail if you do not define the http_proxy / https_proxy in your Dockerfile:
 
     ENV http_proxy=http://proxyuser:proxypass@proxy.ip:port
     ENV https_proxy=http://proxyuser:proxypass@proxy.ip:port
